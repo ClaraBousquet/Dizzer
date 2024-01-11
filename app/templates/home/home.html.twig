@@ -1,0 +1,33 @@
+{# Mon premier fichier twig #}
+{% extends "base.html.twig" %}
+
+{% block title %}DIZZER{% endblock %}
+
+{% block body %}
+<h2>Bienvenue sur dizzer</h2>
+    <div class="row">
+       {#} <p class="center">
+        <a href="{{ path('addOneBook') }}">Ajout d'une musique</a>
+        </p>#}
+    </div>
+    <div class="row">
+        <div class="col-md-3">{# colone side bar de menu #}
+            {{ include("home/_menu.html.twig",{currentPage: 0}) }}
+{#            <ul class="list-unstyled">#}
+{#                <li class="mb-2"><a href="{{ path('page',{numPage: 1}) }}" class="btn btn-sm btn-outline-info"><i class="fa-solid fa-newspaper me-3"></i>Lien 1</a></li>#}
+{#                <li class="mb-2"><a href="{{ path('page',{numPage: 2}) }}" class="btn btn-sm btn-outline-info"><i class="fa-solid fa-newspaper me-3"></i>Lien 2</a></li>#}
+{#                <li class="mb-2"><a href="{{ path('page',{numPage: 3}) }}" class="btn btn-sm btn-outline-info"><i class="fa-solid fa-newspaper me-3"></i>Lien 3</a></li>#}
+{#            </ul>#}
+        </div>
+        <div class="col-md-9">{# colonne informationnelle #}
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit inventore iure, libero necessitatibus praesentium provident? Adipisci, cupiditate deleniti dolores earum, eligendi nobis obcaecati perspiciatis quia reiciendis, reprehenderit sint voluptas voluptatibus.
+            </p>
+            {{ render(path('listemusique')) }}
+        </div>
+    </div>
+
+    
+
+
+{% endblock %}
