@@ -1,0 +1,70 @@
+/* Ajouter un dégradé au fond du sidebar */
+#sidebar {
+    min-width: 250px;
+    height: 100vh;
+    background: linear-gradient(to bottom, #ff5f6d, #ffc371);
+    /* Remplace ces couleurs par celles de ta maquette */
+    color: white;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centrer les éléments verticalement */
+}
+
+/* Styliser le header du sidebar */
+#sidebar .sidebar-header {
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Styliser la liste pour enlever les points */
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    /* Utilise la pleine largeur du sidebar */
+}
+
+/* Styliser chaque élément de la liste */
+#sidebar ul li {
+    display: flex;
+    justify-content: center;
+    /* Centrer horizontalement */
+    margin-bottom: 10px;
+    /* Espacement entre les éléments */
+}
+
+/* Styliser les liens */
+#sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    /* Couleur du texte */
+    background: rgba(255, 255, 255, 0.1);
+    /* Fond légèrement transparent */
+    width: 80%;
+    /* Largeur relative pour laisser de l'espace sur les côtés */
+    padding: 10px;
+    border-radius: 50px;
+    /* Arrondir les bords */
+    display: flex;
+    justify-content: center;
+    /* Centrer le texte horizontalement */
+    align-items: center;
+    /* Centrer le texte verticalement */
+    transition: background-color 0.3s;
+}
+
+/* Effet au survol des liens */
+#sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    /* Fond plus transparent au survol */
+}
+
+/* Styliser le contenu principal */
+#content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+    /* Couleur de fond du contenu, ajuste selon ta maquette */
+}

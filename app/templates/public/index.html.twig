@@ -1,20 +1,38 @@
 <h1>DIZZER</h1>
 
 
+<head>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <title>DIZZER - Ta musique, partout, tout le temps</title>
+</head>
 
-<ul class="nav flex-column">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Album</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Artiste</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Musique</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#">Podcast</a>
-  </li>
-</ul>
+<body>
+    <div id="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h1>DIZZER</h1>
+            </div>
 
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Album</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Artiste</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Musique</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Podcast</a>
+                </li>
+            </ul>
+        </nav>
 
+        <div id="content">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>
