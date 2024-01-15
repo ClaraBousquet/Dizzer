@@ -29,6 +29,8 @@ class AppFixtures extends Fixture
             $music->setType($musicType[array_rand($musicType)]);
             $manager->persist($music);
         }
+
+        //boucle de 
         // $product = new Product();
         // $manager->persist($product);
 

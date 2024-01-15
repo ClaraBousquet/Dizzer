@@ -25,19 +25,19 @@ class Music
     private ?string $type = null;
 
     #[ORM\OneToMany(mappedBy: 'music', targetEntity: artist::class)]
-    private Collection $artist;
 
     #[ORM\Column(length: 255)]
-    private ?string $son = null;
 
-    #[ORM\ManyToMany(targetEntity: Artist::class, mappedBy: 'musicArtist')]
+    #[ORM\ManyToMany(targetEntity: Artist::class, mappedBy: 'music')]
     private Collection $artists;
 
     public function __construct()
     {
-        $this->artist = new ArrayCollection();
         $this->artists = new ArrayCollection();
     }
+
+
+
 
     public function getId(): ?int
     {
@@ -81,46 +81,15 @@ class Music
     }
 
     /**
-     * @return Collection<int, artist>
+     * 
      */
-    public function getArtist(): Collection
-    {
-        return $this->artist;
-    }
+  
 
-    public function addArtist(artist $artist): static
-    {
-        if (!$this->artist->contains($artist)) {
-            $this->artist->add($artist);
-            $artist->setMusic($this);
-        }
+   
 
-        return $this;
-    }
+ 
 
-    public function removeArtist(artist $artist): static
-    {
-        if ($this->artist->removeElement($artist)) {
-            // set the owning side to null (unless already changed)
-            if ($artist->getMusic() === $this) {
-                $artist->setMusic(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getSon(): ?string
-    {
-        return $this->son;
-    }
-
-    public function setSon(string $son): static
-    {
-        $this->son = $son;
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection<int, Artist>
@@ -129,4 +98,24 @@ class Music
     {
         return $this->artists;
     }
+
+    public function addArtist(Artist $artist): static
+    {
+        if (!$this->artists->contains($artist)) {
+            $this->artists->add($artist);
+            $artist->addMusic($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArtist(Artist $artist): static
+    {
+        if ($this->artists->removeElement($artist)) {
+            $artist->removeMusic($this);
+        }
+
+        return $this;
+    }
+
 }

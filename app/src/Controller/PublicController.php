@@ -14,4 +14,6 @@ class PublicController extends AbstractController
         return $this->render('public/index.html.twig');
     }
 
+    
+
 }

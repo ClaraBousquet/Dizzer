@@ -21,18 +21,19 @@ class Artist
     #[ORM\OneToMany(mappedBy: 'artist', targetEntity: user::class)]
     private Collection $user;
 
-    #[ORM\ManyToOne(inversedBy: 'artist')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Music $music = null;
-
     #[ORM\ManyToMany(targetEntity: music::class, inversedBy: 'artists')]
-    private Collection $musicArtist;
+    private Collection $music;
 
     public function __construct()
     {
-        $this->user = new ArrayCollection();
-        $this->musicArtist = new ArrayCollection();
+        $this->music = new ArrayCollection();
     }
+
+    #[ORM\ManyToOne(inversedBy: 'artist')]
+    #[ORM\JoinColumn(nullable: false)]
+
+
+  
 
     public function getId(): ?int
     {
@@ -84,25 +85,30 @@ class Artist
     /**
      * @return Collection<int, music>
      */
-    public function getMusicArtist(): Collection
+
+    /**
+     * @return Collection<int, music>
+     */
+    public function getMusic(): Collection
     {
-        return $this->musicArtist;
+        return $this->music;
     }
 
-    public function addMusicArtist(music $musicArtist): static
+    public function addMusic(music $music): static
     {
-        if (!$this->musicArtist->contains($musicArtist)) {
-            $this->musicArtist->add($musicArtist);
+        if (!$this->music->contains($music)) {
+            $this->music->add($music);
         }
 
         return $this;
     }
 
-    public function removeMusicArtist(music $musicArtist): static
+    public function removeMusic(music $music): static
     {
-        $this->musicArtist->removeElement($musicArtist);
+        $this->music->removeElement($music);
 
         return $this;
     }
+
 
 }

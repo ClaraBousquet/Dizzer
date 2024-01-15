@@ -19,6 +19,12 @@ class Album
     #[ORM\Column(length: 255)]
     private ?string $albumArtist = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $type = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $albumType = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -36,14 +42,14 @@ class Album
         return $this;
     }
 
-    public function getAlbumArtist(): ?string
+    public function getAlbumType(): ?string
     {
-        return $this->albumArtist;
+        return $this->albumType;
     }
 
-    public function setAlbumArtist(string $albumArtist): static
+    public function setAlbumType(string $albumType): static
     {
-        $this->albumArtist = $albumArtist;
+        $this->albumType = $albumType;
 
         return $this;
     }
