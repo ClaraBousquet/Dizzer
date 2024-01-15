@@ -46,10 +46,10 @@
     /* Largeur relative pour laisser de l'espace sur les côtés */
     padding: 10px;
     border-radius: 50px;
+    flex-direction: column;
     /* Arrondir les bords */
     display: flex;
     justify-content: center;
-    /* Centrer le texte horizontalement */
     align-items: center;
     /* Centrer le texte verticalement */
     transition: background-color 0.3s;
@@ -58,7 +58,6 @@
 /* Effet au survol des liens */
 #sidebar ul li a:hover {
     background: rgba(255, 255, 255, 0.2);
-    /* Fond plus transparent au survol */
 }
 
 /* Styliser le contenu principal */
@@ -66,5 +65,5 @@
     flex-grow: 1;
     padding: 20px;
     background-color: #f4f4f4;
-    /* Couleur de fond du contenu, ajuste selon ta maquette */
+    /* Couleur de fond du contenu, */
 }

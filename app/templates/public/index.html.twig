@@ -1,14 +1,15 @@
-<h1>DIZZER</h1>
+{% extends 'base.html.twig' %}
+
+{% block title %}DIZZER{% endblock %}
 
 
-<head>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-    <title>DIZZER - Ta musique, partout, tout le temps</title>
-</head>
 
+{% block body %}
 <body>
     <div id="wrapper">
         <nav id="sidebar">
+            <div class="col-md-3">{# colone side bar de menu #}
+
             <div class="sidebar-header">
                 <h1>DIZZER</h1>
             </div>
@@ -30,9 +31,8 @@
         </nav>
 
         <div id="content">
-            {% block body %}{% endblock %}
         </div>
     </div>
+    
 </body>
-
-</html>
+{% endblock %}
