@@ -16,11 +16,6 @@ class Album
     #[ORM\Column(length: 255)]
     private ?string $albumName = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $albumArtist = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $type = null;
 
     #[ORM\Column(length: 255)]
     private ?string $albumType = null;

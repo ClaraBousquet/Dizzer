@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\Album;
 use App\Entity\Music;
 use App\Entity\Artist;
 use Doctrine\Persistence\ObjectManager;
@@ -15,6 +16,7 @@ class AppFixtures extends Fixture
 
         $faker = Factory::create(locale: 'fr_FR');
         $musicType = ['Rock', 'Jazz', 'Pop', 'Classic', 'Rap', 'pop-rock', 'métal', 'pop-punk'];
+        $albumType = ['Rock', 'Jazz', 'Pop', 'Classic', 'Rap', 'pop-rock', 'métal', 'pop-punk'];
         // boucle de création des artistes 60
         for ($i = 0; $i < 60; $i++) {
             $artist = new Artist();
@@ -30,7 +32,13 @@ class AppFixtures extends Fixture
             $manager->persist($music);
         }
 
-        //boucle de 
+        //boucle de création des albums 60
+        for ($i = 0; $i < 60; $i++) {
+            $album = new Album();
+            $album->setAlbumName($faker->name);
+            $album->setAlbumType($albumType[array_rand($albumType)]);
+            $manager->persist($music);
+        }
         // $product = new Product();
         // $manager->persist($product);
 
