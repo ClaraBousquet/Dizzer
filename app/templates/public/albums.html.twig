@@ -1,1 +1,18 @@
-<h1>liste albums</h1>
+{% extends "base.html.twig" %}
+
+{% block title %}Mes Albums likés{% endblock %}
+{% block body %}
+
+{% for album in albums %}
+<div class="card border-info mb-2 me-1" style="width: 30%">
+    <div class="card-header">
+       <h1>{{ album.albumName }}</h1> 
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ album.type }}</p>
+    </div>
+
+
+    {% endfor %}
+
+    {% endblock %}
