@@ -25,22 +25,22 @@ class AppFixtures extends Fixture
         }
 
         // boucle de création des musiques 60
-        for ($i = 0; $i < 60; $i++) {
-            $music = new Music();
-            $music->setName($faker->name);
-            $music->setType($musicType[array_rand($musicType)]);
-            $manager->persist($music);
-        }
+        // for ($i = 0; $i < 60; $i++) {
+        //     $music = new Music();
+        //     $music->setName($faker->name);
+        //     $music->setType($musicType[array_rand($musicType)]);
+        //     $manager->persist($music);
+        // }
 
         //boucle de création des albums 60
         for ($i = 0; $i < 60; $i++) {
             $album = new Album();
             $album->setAlbumName($faker->name);
             $album->setAlbumType($albumType[array_rand($albumType)]);
-            $manager->persist($music);
+            $album->setArtist($artist);
+            $manager->persist($album);
         }
-        // $product = new Product();
-        // $manager->persist($product);
+     
 
         $manager->flush();
     }

@@ -4,12 +4,12 @@
 {% block body %}
 
 {% for album in albums %}
-<div class="card border-info mb-2 me-1" style="width: 30%">
-    <div class="card-header">
-       <h1>{{ album.albumName }}</h1> 
+<div class="albums">
+    <div>
+       <h2>{{ album.albumName}}</h1> 
     </div>
-    <div class="card-body">
-        <p class="card-text">{{ album.type }}</p>
+    <div >
+        <p class="card-text">{{ album.albumType }}</p>
     </div>
 
 

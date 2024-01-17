@@ -12,6 +12,11 @@
     /* Centrer les éléments verticalement */
 }
 
+
+title {
+    color:black;
+}
+
 /* Styliser le header du sidebar */
 #sidebar .sidebar-header {
     margin: 20px 0;
@@ -57,4 +62,16 @@
 /* Effet au survol */
 #sidebar ul li a:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+
+
+.gradient-custom {
+/* fallback for old browsers */
+background: #6a11cb;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
 }

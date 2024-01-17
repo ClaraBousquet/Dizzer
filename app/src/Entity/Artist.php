@@ -3,37 +3,31 @@
 namespace App\Entity;
 
 use App\Repository\ArtistRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: ArtistRepository::class)]
 class Artist
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     private ?string $artistName = null;
 
-    #[ORM\OneToMany(mappedBy: 'artist', targetEntity: user::class)]
-    private Collection $user;
-
-    #[ORM\ManyToMany(targetEntity: music::class, inversedBy: 'artists')]
-    private Collection $music;
+    #[ORM\OneToMany(mappedBy: 'artist', targetEntity: User::class)]
+    private Collection $users; 
+    #[ORM\ManyToMany(targetEntity: Music::class, inversedBy: 'artists')]
+    private Collection $musics; 
 
     public function __construct()
     {
-        $this->music = new ArrayCollection();
+        $this->users = new ArrayCollection();
+        $this->musics = new ArrayCollection();
     }
-
-    #[ORM\ManyToOne(inversedBy: 'artist')]
-    #[ORM\JoinColumn(nullable: false)]
-
-
-  
 
     public function getId(): ?int
     {
@@ -45,35 +39,33 @@ class Artist
         return $this->artistName;
     }
 
-    public function setArtistName(string $artistName): static
+    public function setArtistName(string $artistName): self
     {
         $this->artistName = $artistName;
-
         return $this;
     }
 
     /**
-     * @return Collection<int, user>
+     * @return Collection<int, User
      */
-    public function getUser(): Collection
+    public function getUsers(): Collection
     {
-        return $this->user;
+        return $this->users;
     }
 
-    public function addUser(user $user): static
+    public function addUser(User $user): self
     {
-        if (!$this->user->contains($user)) {
-            $this->user->add($user);
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
             $user->setArtist($this);
         }
 
         return $this;
     }
 
-    public function removeUser(user $user): static
+    public function removeUser(User $user): self
     {
-        if ($this->user->removeElement($user)) {
-            // set the owning side to null (unless already changed)
+        if ($this->users->removeElement($user)) {
             if ($user->getArtist() === $this) {
                 $user->setArtist(null);
             }
@@ -83,32 +75,30 @@ class Artist
     }
 
     /**
-     * @return Collection<int, music>
+     * @return Collection<int, Music
      */
-
-    /**
-     * @return Collection<int, music>
-     */
-    public function getMusic(): Collection
+    public function getMusics(): Collection
     {
-        return $this->music;
+        return $this->musics;
     }
 
-    public function addMusic(music $music): static
+    public function addMusic(Music $music): self
     {
-        if (!$this->music->contains($music)) {
-            $this->music->add($music);
+        if (!$this->musics->contains($music)) {
+            $this->musics->add($music);
+            $music->addArtist($this); 
         }
 
         return $this;
     }
 
-    public function removeMusic(music $music): static
+    public function removeMusic(Music $music): self
     {
-        $this->music->removeElement($music);
+        if ($this->musics->removeElement($music)) {
+            $music->removeArtist($this); 
 
         return $this;
     }
-
+}
 
 }
