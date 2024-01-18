@@ -45,7 +45,7 @@ class AppFixtures extends Fixture
             $album->setAlbumName($faker->name);
             $album->setAlbumTitle($albumTitle[array_rand($albumTitle)]);
             $album->setAlbumType($albumType[array_rand($albumType)]);
-            $album->setAlbumListTitres($albumListTitres[array_rand($albumListTitres)]);
+            $album->setAlbumListTitres($albumListTitres);
             $album->setArtist($artist);
             $manager->persist($album);
         }

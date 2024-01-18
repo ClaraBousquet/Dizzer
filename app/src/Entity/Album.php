@@ -21,7 +21,7 @@ class Album
     private ?string $albumTitle = null;
 
         #[ORM\Column(length: 255)]
-    private ?string $albumListTitres = null;
+    private ?array $albumListTitres = null;
 
     #[ORM\Column(length: 255)]
     private ?string $albumType = null;
@@ -67,12 +67,12 @@ class Album
         return $this;
     }
 
-   public function getAlbumListTitres(): ?string
+   public function getAlbumListTitres(): ?array
     {
         return $this->albumListTitres;
     }
 
- public function setAlbumListTitres(string $albumListTitres): self
+ public function setAlbumListTitres(array $albumListTitres): self
 {
     $this->albumListTitres = $albumListTitres;
     return $this;
