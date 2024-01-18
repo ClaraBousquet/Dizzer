@@ -3,109 +3,97 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $userName = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $userBirthday = null;
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $username = null;
 
     #[ORM\Column]
-    private ?bool $userAccount = null;
+    private array $roles = [];
 
+    /**
+     * @var string The hashed password
+     */
     #[ORM\Column]
-    private ?bool $isActive = null;
-
-    #[ORM\Column]
-    private ?bool $isAdmin = null;
-
-    #[ORM\ManyToOne(inversedBy: 'user')]
-    private ?Artist $artist = null;
+    private ?string $password = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUserName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->userName;
+        return $this->username;
     }
 
-    public function setUserName(string $userName): static
+    public function setUsername(string $username): static
     {
-        $this->userName = $userName;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getUserBirthday(): ?\DateTimeInterface
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->userBirthday;
+        return (string) $this->username;
     }
 
-    public function setUserBirthday(\DateTimeInterface $userBirthday): static
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->userBirthday = $userBirthday;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function isUserAccount(): ?bool
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->userAccount;
+        return $this->password;
     }
 
-    public function setUserAccount(bool $userAccount): static
+    public function setPassword(string $password): static
     {
-        $this->userAccount = $userAccount;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function isIsActive(): ?bool
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
     {
-        return $this->isActive;
-    }
-
-    public function setIsActive(bool $isActive): static
-    {
-        $this->isActive = $isActive;
-
-        return $this;
-    }
-
-    public function isIsAdmin(): ?bool
-    {
-        return $this->isAdmin;
-    }
-
-    public function setIsAdmin(bool $isAdmin): static
-    {
-        $this->isAdmin = $isAdmin;
-
-        return $this;
-    }
-
-    public function getArtist(): ?Artist
-    {
-        return $this->artist;
-    }
-
-    public function setArtist(?Artist $artist): static
-    {
-        $this->artist = $artist;
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Album Details{% endblock %}
+
+{% block body %}
+<p>Titre de l'album: {{ album.albumTitle }}</p>
+    <p>Nom de l'artiste: {{ album.albumname }}</p>
+    <p>Catégorie de musique: {{ album.albumType }}</p>
+    <p>Liste des titres: {{ album.albumListTitres }}</p>
+{% endblock %}

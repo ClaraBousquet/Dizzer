@@ -18,14 +18,11 @@ class Artist
     #[ORM\Column(length: 255)]
     private ?string $artistName = null;
 
-    #[ORM\OneToMany(mappedBy: 'artist', targetEntity: User::class)]
-    private Collection $users; 
     #[ORM\ManyToMany(targetEntity: Music::class, inversedBy: 'artists')]
     private Collection $musics; 
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
         $this->musics = new ArrayCollection();
     }
 
@@ -48,31 +45,7 @@ class Artist
     /**
      * @return Collection<int, User
      */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->setArtist($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            if ($user->getArtist() === $this) {
-                $user->setArtist(null);
-            }
-        }
-
-        return $this;
-    }
+ 
 
     /**
      * @return Collection<int, Music

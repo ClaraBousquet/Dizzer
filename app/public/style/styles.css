@@ -65,6 +65,37 @@ title {
 }
 
 
+/* albums */
+
+.albums-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;    
+  background: linear-gradient(to bottom, #ff5f6d, #ffc371);
+
+}
+
+.card-link-styling {
+  text-decoration: none; 
+}
+
+
+.albums {
+
+  width: 20%; 
+  margin-bottom: 20px; 
+  margin-left: 10px;
+}
+
+.btn-custom {
+  background: linear-gradient(to bottom, #ff5f6d, #ffc371);
+}
+
+.btn-custom:hover{
+  background: linear-gradient(to bottom, #ffc371, #ff5f6d);
+}
+
+
 
 
 /* Login */
@@ -73,8 +104,20 @@ title {
 background: #6a11cb;
 
 /* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    background: linear-gradient(to bottom, #ff5f6d, #ffc371);
 
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    background: linear-gradient(to bottom, #ff5f6d, #ffc371);
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* Couleur blanche avec une opacité de 0,9 */
+    border-radius: 1rem; /* Garder votre style de bord arrondi */
+}
+
+
+/* Mon compte */
+.container-user{
+    background: linear-gradient(to bottom, #ff5f6d, #ffc371);
+
 }

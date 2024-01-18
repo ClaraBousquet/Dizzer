@@ -6,6 +6,7 @@ use App\Repository\AlbumRepository;
 use App\Repository\ArtistRepository;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class PublicController extends AbstractController
 {
@@ -19,7 +20,7 @@ class PublicController extends AbstractController
         $this->artistRepo = $artistRepository;
     }
 
-    #[Route ('/index')]
+    #[Route ('/index', name: 'index')]
     public function index()
     {
         return $this->render('public/index.html.twig');
@@ -44,16 +45,21 @@ class PublicController extends AbstractController
     }
 
     #[Route('/login', name: 'login')]
-    public function login()
+    public function login(AuthenticationUtils $authenticationUtils)
     {
-        return $this->render('public/login.html.twig');
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('public/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]);
     }
 
-    #[Route("/album/{id}", name: "album", methods: ['GET'])]
-    public function getAlbum(int $id)
+    #[Route("/album/{id}", name: "albumdetail", methods: ['GET'])]
+    public function getOneAlbum(int $id)
     {
-        //dump($this->bookRepo->find($id));
-        return $this->render("public/album.html.twig", [
+        return $this->render("public/albumDetails.html.twig", [
             "album" => $this->albumRepo->find($id),
         ]);
     }

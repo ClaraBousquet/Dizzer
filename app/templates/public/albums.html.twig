@@ -1,18 +1,24 @@
 {% extends "base.html.twig" %}
 
 {% block title %}Mes Albums likés{% endblock %}
+
 {% block body %}
+<div class="albums-container">
 
-{% for album in albums %}
-<div class="albums">
-    <div>
-       <h2>{{ album.albumName}}</h1> 
-    </div>
-    <div >
+<h1>Les Albums</h1>
+<div class="albums-container">
+  {% for album in albums %}
+    <div class="card border-info albums">
+      <img src="{{ asset('images/default1.jpg')}}" alt="couverture de l'album" class="card-img-top">
+      <div class="card-body">
+        <h2>{{ album.albumTitle }}</h2>
         <p class="card-text">{{ album.albumType }}</p>
+        <a href="{{ path('albumdetail', {'id': album.id}) }}" class="btn  btn-custom">Voir l'album</a>
+      </div>
     </div>
+  {% else %}
+    <p>Aucun album n'a été trouvé.</p>
+  {% endfor %}
+</div>
 
-
-    {% endfor %}
-
-    {% endblock %}
+{% endblock %}

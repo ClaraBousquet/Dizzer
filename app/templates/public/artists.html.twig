@@ -1,18 +1,21 @@
 
-{% extends 'base.html.twig' %}
+    {% extends "base.html.twig" %}
 
-{% block title %}Mes artistes{% endblock %}
+{% block title %}Mes Artistes{% endblock %}
+
 {% block body %}
 
-{% for artist in artists %}
-<div >
-    <div>
-       <h2>{{ artist.artistName}}</h1> 
+<div class="albums-container">
+  {% for artist in artists %}
+    <div class="card border-info albums">
+      <img src="{{ asset('images/default2.jpg')}}" alt="artiste" class="card-img-top">
+      <div class="card-body">
+        <h2>{{ artist.artistName }}</h2>
+      </div>
     </div>
-    <div >
-    </div>
+  {% else %}
+    <p>Aucun album n'a été trouvé.</p>
+  {% endfor %}
+</div>
 
-
-    {% endfor %}
-
-    {% endblock %}
+{% endblock %}
