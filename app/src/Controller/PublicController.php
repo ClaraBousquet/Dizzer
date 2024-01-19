@@ -2,22 +2,27 @@
 
 namespace App\Controller;
 
+use App\Entity\Album;
 use App\Repository\AlbumRepository;
 use App\Repository\ArtistRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Doctrine\ORM\EntityManagerInterface;
 
 class PublicController extends AbstractController
 {
 
     private $albumRepo;
     private $artistRepo;
+    private $entityManager;
 
-     public function __construct(AlbumRepository $albumRepository, ArtistRepository $artistRepository)
+     public function __construct(AlbumRepository $albumRepository, ArtistRepository $artistRepository,EntityManagerInterface $entityManager)
     {
         $this->albumRepo = $albumRepository;
         $this->artistRepo = $artistRepository;
+        $this->entityManager = $entityManager;
     }
 
     #[Route ('/index', name: 'index')]
@@ -68,6 +73,29 @@ class PublicController extends AbstractController
         return $this->render("public/albumDetails.html.twig", [
             "album" => $this->albumRepo->find($id),
         ]);
+    }
+
+    public function addAlbumForm(Request $request)
+    {
+         $album = new Album();
+        $form = $this->createForm(Album::class, $album);
+
+        $form->handleRequest($request);
+
+         if ($form->isSubmitted() && $form->isValid()) {
+        $this->entityManager->persist($album);
+        $this->entityManager->flush();
+    }
+
+
+        
+    $albums = $this->entityManager->getRepository(Album::class)->findAll();
+
+        return $this->render('album/ajouter_album.html.twig', [
+            'form' => $form->createView(),
+            'albums' => $albums,
+        ]);
+
     }
 
 }

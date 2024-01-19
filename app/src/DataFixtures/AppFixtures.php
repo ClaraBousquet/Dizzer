@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
         // boucle de création des albums
       for ($i = 0; $i < count($albumTitle); $i++) {
     $album = new Album();
-    $album->setAlbumName($faker->name);
+   // $album->setAlbumName($faker->name);
     $album->setAlbumTitle($albumTitle[$i]);
     $album->setAlbumType($albumType[rand(0, count($albumType) - 1)]);
     $album->setAlbumListTitres($albumListTitres);
@@ -39,17 +39,14 @@ class AppFixtures extends Fixture
     // Parcours du tableau artistesList pour trouver l'artiste correspondant
     foreach ($artistesList as $artisteName => $albums) {
         if (in_array($albumTitle[$i], $albums)) {
-            // Recherchez ou créez l'artiste correspondant
             $artist = $manager->getRepository(Artist::class)->findOneBy(['artistName' => $artisteName]);
 
             if (!$artist) {
-                // Si l'artiste n'existe pas encore, créez-le
                 $artist = new Artist();
                 $artist->setArtistName($artisteName);
                 $manager->persist($artist);
             }
 
-            // Associez l'artiste à l'album
             $album->setArtist($artist);
             break;
         }
