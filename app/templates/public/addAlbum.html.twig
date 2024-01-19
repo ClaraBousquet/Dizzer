@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Ajouter un album {% endblock %}
+
+{% block body %}
+
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card  bg-light text-black" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+
+              <form method="post" action="{{ path('userHome')}}">
+              <h2 class="fw-bold mb-2 text-uppercase">J'ajoute un album</h2>
+              <p class="text-black-50 mb-5">Entre les informations relatives a l'album</p>
+
+              <div class="form-outline form-black mb-4">
+                <input type="text" id="typeEmailX" class="form-control form-control-lg" />
+                <label class="form-label" >Titre de l'album</label>
+              </div>
+
+              <div class="form-outline form-black mb-4">
+                <input type="text" id="typeEmailX" class="form-control form-control-lg" />
+                <label class="form-label" >Type de musique</label>
+              </div>
+
+              <div class="form-outline form-black mb-4">
+                <input type="text" id="typeEmailX" class="form-control form-control-lg" />
+                <label class="form-label" >Nom de l'artiste</label>
+              </div>
+
+              <div class="form-outline form-black mb-4">
+                <input type="text" id="typeEmailX" class="form-control form-control-lg" />
+                <label class="form-label" >Liste des titres</label>
+              </div>
+
+              <div class="form-outline form-black mb-4">
+                <input type="image" id="image" class="form-control form-control-lg" />
+                <label class="form-label" >Image de l'album</label>
+              </div>
+
+            
+
+
+              <button class="btn btn-outline-dark btn-lg px-5" type="submit">Ajouter l'album</button>
+
+              </form>
+           
+
+            </div>
+
+            <div>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}

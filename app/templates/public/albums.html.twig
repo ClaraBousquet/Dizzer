@@ -12,13 +12,14 @@
       <img src="{{ asset('images/default1.jpg')}}" alt="couverture de l'album" class="card-img-top">
       <div class="card-body">
         <h2>{{ album.albumTitle }}</h2>
+        <h3>{{ album.albumName}}</h3>
         <p class="card-text">{{ album.albumType }}</p>
         <a href="{{ path('albumdetail', {'id': album.id}) }}" class="btn  btn-custom">Voir l'album</a>
       </div>
     </div>
   {% else %}
-    <p>Aucun album n'a été trouvé.</p>
   {% endfor %}
+
 </div>
 
 {% endblock %}

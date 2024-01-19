@@ -14,6 +14,7 @@ class Album
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
+
     #[ORM\Column(length: 255)]
     private ?string $albumName = null;
 
@@ -90,4 +91,17 @@ class Album
         $this->artist = $artist;
         return $this;
     }
+
+ public function getArtistesList(): ?Artist
+    {
+        return $this->artist;
+    }
+
+    public function setArtistesList(?Artist $artist): self
+    {
+        $this->artist = $artist;
+        return $this;
+    }
+
+
 }

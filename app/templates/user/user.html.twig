@@ -1,21 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
 {% block title %}Mon compte{% endblock %}
 
 {% block body %}
-<h1>Mon compte</h1>
-<div class="container-user">
+<div class="albums-container">
 
+<h1>Mon compte, Mes albums </h1>
 
-
-    <h2>
-        <span class="float-end ">
-            <a href="{{ path ("index") }}" class="btn btn-sm btn-outline-success"><i class="fas fa-home"></i></a>
-            <a href="{{ path ("logout") }}" class="btn btn-sm btn-outline-warning"><i class="fas fa-sign-out"></i></a>
-
-    </h2>
-    </a>
-
-   
+<div class="albums-container">
+  {% for album in albums %}
+    <div class="card border-info albums">
+      <img src="{{ asset('images/default1.jpg')}}" alt="couverture de l'album" class="card-img-top">
+      <div class="card-body">
+        <h2>{{ album.albumTitle }}</h2>
+        <h3>{{ album.albumName}}</h3>
+        <p class="card-text">{{ album.albumType }}</p>
+        <a href="{{ path('albumdetail', {'id': album.id}) }}" class="btn  btn-custom">Voir l'album</a>
+      </div>
     </div>
-    {% endblock %}
+  {% else %}
+  {% endfor %}
+</div>
+<a href="{{ path('addAlbum') }}" class="btn  btn-custom btn-add mt-20">Ajouter un album</a>
+
+{% endblock %}

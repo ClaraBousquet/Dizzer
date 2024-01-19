@@ -56,6 +56,12 @@ class PublicController extends AbstractController
         ]);
     }
 
+#[Route('/addAlbum', name: 'addAlbum', methods: ['GET', 'POST'])]
+    public function addAlbum()
+    {
+        return $this->render("public/addAlbum.html.twig");
+    }
+
     #[Route("/album/{id}", name: "albumdetail", methods: ['GET'])]
     public function getOneAlbum(int $id)
     {
