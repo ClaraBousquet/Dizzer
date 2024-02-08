@@ -98,38 +98,19 @@ return new Response($content);
 #[Route("/albums", name: "albums", methods: ['GET'])]
     public function getAlbums()
     {
+        //dump($this->albumRepo->findAll());
         return $this->render("public/albums.html.twig", [
             "albums" => $this->albumRepo->findAll(),
+
               ]);
     }
 
     #[Route("/artists", name: "artists", methods: ['GET'])]
     public function getArtists()
     {
-           // Créez une instance du client HTTP
-    $client = HttpClient::create();
-    
-    // Remplacez 'YOUR_ACCESS_TOKEN' par votre propre token d'accès à l'API Spotify
-    $accessToken = 'BQDbUTzfqc7gvlWG-Ty9VleI302FF
-8lp60f6-LWaBMAl-MB1nMARCMihhfsdjRyMQi5PcmTm5Ab1jR2CnNbT_GXftYduLbsVBqykpl5hyzAYqq1tJqog';
-    
-    // URL de l'endpoint de recherche d'albums sur Spotify
-    $url = 'https://api.spotify.com/v1/search?q=nirvana&type=album';
-
-    // Effectuez une requête GET pour récupérer les données des albums depuis l'API Spotify
-    $response = $client->request('GET', $url, [
-        'headers' => [
-            'Authorization' => 'Bearer ' . $accessToken,
-        ],
-    ]);
-
-    // Récupérez les données sous forme de tableau associatif
-    $albumsData = $response->toArray();
-
-    // Passez les données des albums à votre vue Twig
-    return $this->render("public/albums.html.twig", [
-        "albums" => $albumsData['albums']['items'],
-    ]);
+        return $this->render("public/artists.html.twig", [
+            "artists" => $this->artistRepo->findAll(),
+        ]);
     }
 
     #[Route('/login', name: 'login')]
