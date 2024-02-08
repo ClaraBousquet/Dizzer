@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de couverture d'albums{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Recherche d'image</h2>
+    <div class="row">
+        <h4>Formulaire de recherche</h4>
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+    
+    </div>
+</div>
+<div class="row">
+    Elément recherché{{ query }}
+
+    </div>
+    <div class="row">
+        {% for image in images %}
+        <img src="{{ image }}" >
+        {% endfor %}
+    </div>
+</div>
+
+
+    {% endblock %}

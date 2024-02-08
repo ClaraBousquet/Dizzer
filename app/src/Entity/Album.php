@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AlbumRepository;
-use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Artist; 
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AlbumRepository;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: AlbumRepository::class)]
+#[ApiResource]
 class Album
 {
     #[ORM\Id]
@@ -30,6 +32,9 @@ class Album
     #[ORM\ManyToOne(targetEntity: Artist::class, inversedBy: 'albums')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Artist $artist = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $images = null;
 
     public function getId(): ?int
     {
@@ -74,10 +79,10 @@ class Album
     }
 
  public function setAlbumListTitres(array $albumListTitres): self
-{
-    $this->albumListTitres = $albumListTitres;
-    return $this;
-}
+         {
+             $this->albumListTitres = $albumListTitres;
+             return $this;
+         }
 
     
 
@@ -93,15 +98,29 @@ class Album
     }
 
  public function getArtistesList(): ?Artist
-    {
-        return $this->artist;
-    }
+             {
+                 return $this->artist;
+             }
 
     public function setArtistesList(?Artist $artist): self
     {
         $this->artist = $artist;
         return $this;
     }
+
+    public function getImages(): ?string
+    {
+        return $this->images;
+    }
+
+    public function setImages(?string $images): static
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+
 
 
 }

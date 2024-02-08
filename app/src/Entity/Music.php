@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\MusicRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MusicRepository;
+use ApiPlatform\Metadata\ApiResource;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: MusicRepository::class)]
+#[ApiResource]
 class Music
 {
     #[ORM\Id]
